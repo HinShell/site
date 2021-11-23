@@ -51,8 +51,12 @@ function copyRobots() {
     return src('./src/robots.txt')
         .pipe(dest('./dist'))
 }
+function installBulma() {
+    return src('./node_modules/bulma/css/bulma.min.css')
+        .pipe(dest('./src/tmp/'))
+}
 function concatCss() {
-    return src(['./src/assets/css/bulma.min.css', './src/tmp/fonts.css', './src/tmp/main.css'])
+    return src(['./src/tmp/bulma.min.css', './src/tmp/fonts.css', './src/tmp/main.css'])
         .pipe(concat('main.css'))
         .pipe(dest('./dist/assets/css/'));
 };
@@ -88,4 +92,5 @@ exports.default =   task(deleteDistFolder)
                     task(minifyCss)
                     task(imagesWebp)
                     task(clearCssCache)
-exports.build =     series(deleteDistFolder, htmlTemplate, clearCssCache, minifyHtml, minifyCss, processScss, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
+                    task(installBulma)
+exports.build =     series(deleteDistFolder, htmlTemplate, clearCssCache, minifyHtml, minifyCss, processScss, installBulma, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
