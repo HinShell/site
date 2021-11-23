@@ -52,7 +52,7 @@ function copyRobots() {
         .pipe(dest('./dist'))
 }
 function concatCss() {
-    return src(['./src/assets/css/bulma.min.css', './src/tmp/main.css', './src/tmp/fonts.css'])
+    return src(['./src/assets/css/bulma.min.css', './src/tmp/fonts.css', './src/tmp/main.css'])
         .pipe(concat('main.css'))
         .pipe(dest('./dist/assets/css/'));
 };
