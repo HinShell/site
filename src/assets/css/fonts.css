@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?mn8pwj');
-  src:  url('../fonts/icomoon.eot?mn8pwj#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?mn8pwj') format('truetype'),
-    url('../fonts/icomoon.woff?mn8pwj') format('woff'),
-    url('../fonts/icomoon.svg?mn8pwj#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot');
+  src:  url('../fonts/icomoon.eot') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf') format('truetype'),
+    url('../fonts/icomoon.woff') format('woff'),
+    url('../fonts/icomoon.svg') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,15 +25,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-phone:before {
-  content: "\e901";
-}
 .icon-envelope-o:before {
-  content: "\e902";
+  content: "\f003";
 }
-.icon-instagram:before {
-  content: "\e903";
+.icon-map-marker:before {
+  content: "\f041";
 }
 .icon-facebook-square:before {
-  content: "\e900";
+  content: "\f082";
+}
+.icon-phone:before {
+  content: "\f095";
+}
+.icon-instagram:before {
+  content: "\f16d";
 }
