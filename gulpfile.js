@@ -61,7 +61,7 @@ function concatCss() {
         .pipe(dest('./dist/assets/css/'));
 };
 function minifyCss() {
-    return src('./src/assets/css/fonts.css')
+    return src('./src/tmp/fonts.css')
         .pipe(minify())
         .pipe(dest('./src/tmp'))
 }
@@ -80,6 +80,17 @@ function clearCssCache() {
         .pipe(dest('./src/tmp'))
 }
 
+function clearFontCache() {
+    var randomNumber = Math.floor(Math.random() * 6) + 5;
+    var randomString = randomStr.generate(randomNumber);
+    return src('./src/assets/css/fonts.css')
+        .pipe(replace('icomoon.eot', 'icomoon.eot?' + randomString))
+        .pipe(replace('icomoon.ttf', 'icomoon.ttf?' + randomString))
+        .pipe(replace('icomoon.woff', 'icomoon.woff?' + randomString))
+        .pipe(replace('icomoon.svg', 'icomoon.svg?' + randomString))
+        .pipe(dest('./src/tmp'))
+}
+
 exports.default =   task(deleteDistFolder)
                     task(minifyHtml)
                     task(processScss)
@@ -93,4 +104,5 @@ exports.default =   task(deleteDistFolder)
                     task(imagesWebp)
                     task(clearCssCache)
                     task(installBulma)
-exports.build =     series(deleteDistFolder, htmlTemplate, clearCssCache, minifyHtml, minifyCss, processScss, installBulma, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
+                    task(clearFontCache)
+exports.build =     series(deleteDistFolder, htmlTemplate, clearCssCache, clearFontCache, minifyHtml, minifyCss, processScss, installBulma, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
