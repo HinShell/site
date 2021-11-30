@@ -55,10 +55,19 @@ function installBulma() {
     return src('./node_modules/bulma/css/bulma.min.css')
         .pipe(dest('./src/tmp/'))
 }
+function installFullpagejs() {
+    return src(['./node_modules/fullpage.js/dist/fullpage.min.css','./node_modules/fullpage.js/dist/fullpage.min.js'])
+        .pipe(dest('./src/tmp/'));
+}
 function concatCss() {
-    return src(['./src/tmp/bulma.min.css', './src/tmp/fonts.css', './src/tmp/main.css'])
+    return src(['./src/tmp/bulma.min.css', './src/tmp/fullpage.min.css', './src/tmp/fonts.css', './src/tmp/main.css'])
         .pipe(concat('main.css'))
         .pipe(dest('./dist/assets/css/'));
+};
+function concatJs() {
+    return src('./src/tmp/fullpage.min.js')
+        .pipe(concat('main.js'))
+        .pipe(dest('./dist/assets/js/'));
 };
 function minifyCss() {
     return src('./src/tmp/fonts.css')
@@ -105,4 +114,6 @@ exports.default =   task(deleteDistFolder)
                     task(clearCssCache)
                     task(installBulma)
                     task(clearFontCache)
-exports.build =     series(deleteDistFolder, htmlTemplate, clearCssCache, clearFontCache, minifyHtml, minifyCss, processScss, installBulma, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
+                    task(installFullpagejs)
+                    task(concatJs)
+exports.build =     series(deleteDistFolder, htmlTemplate, clearCssCache, clearFontCache, minifyHtml, minifyCss, processScss, installBulma, installFullpagejs, concatJs, concatCss, imagesWebp, copyImg, copyFonts, copyRobots, deleteTmpFolder) 
