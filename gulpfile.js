@@ -67,7 +67,7 @@ function minifyCss() {
 }
 function imagesWebp() {
     return src(['./src'+'/assets/images/*.{gif,png,jpg}'])
-        .pipe(imgwebp({quality: 65,method: 6}))
+        .pipe(imgwebp({lossless: true}))
         .pipe(rename({extname: '.png.webp'}))
         .pipe(dest('./dist/assets/images'))
 
