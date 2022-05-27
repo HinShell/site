@@ -25,18 +25,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-envelope-o:before {
-  content: "\f003";
-}
-.icon-map-marker:before {
-  content: "\f041";
-}
-.icon-facebook-square:before {
-  content: "\f082";
+.icon-file-o:before {
+  content: "\e904";
 }
 .icon-phone:before {
-  content: "\f095";
+  content: "\e900";
 }
 .icon-instagram:before {
-  content: "\f16d";
+  content: "\e901";
+}
+.icon-facebook-square:before {
+  content: "\e902";
+}
+.icon-envelope-o:before {
+  content: "\e903";
 }
